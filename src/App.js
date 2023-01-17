@@ -10,11 +10,17 @@ const App = () => {
   const [typing, setTyping] = useState("");
 
   useEffect(() => {
+    let isApiSubscribed = true;
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
-      .then((data) => setTodoList(data.filter((item, index) => index <= 9)));
-    // to investigate about cleanup function
-    // return () => {};
+      .then((data) => {
+        if (isApiSubscribed) {
+          setTodoList(data.filter((item, index) => index <= 9));
+        }
+      });
+    return () => {
+      isApiSubscribed = false;
+    };
   }, []);
 
   const addTodoHandler = (enteredText, clearFunc) => {
