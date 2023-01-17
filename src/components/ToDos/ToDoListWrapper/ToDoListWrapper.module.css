@@ -1,0 +1,17 @@
+.todos {
+  display: flex;
+  justify-content: space-between;
+  width: 70rem;
+  max-width: 90%;
+  margin: 3rem auto;
+}
+
+@media only screen and (max-width: 600px) {
+  .todos {
+    flex-direction: column;
+  }
+}
+
+.text {
+  text-align: center;
+}
